@@ -96,14 +96,5 @@ Planned additions include progressively more complex reusable RTL blocks and str
 - CDC-aware verification
 - More systematic synthesis and implementation analysis
 - Reusable verification infrastructure
-
-## Author
-
-**Ayush Khetan**
-
-Electronics & Communication Engineering  
-BITS Pilani
-
----
-
+  
 > This repository is primarily a learning and portfolio project, with an emphasis on understanding the reasoning behind RTL architectures and their verification rather than simply collecting finished modules.
