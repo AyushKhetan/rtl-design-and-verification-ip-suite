@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite timestamp="2026-08-24T00:41:03" hostname="Vivobook" package="rr_arbiter" id="0" name="default" tests="5" errors="0" failures="2" time="0" skipped="4">
+<properties>
+<property name="os" value="Linux"/>
+<property name="expect" value="PASS"/>
+<property name="status" value="FAIL"/>
+</properties>
+<testcase classname="default" name="build execution" time="0">
+<failure type="FAIL" message="Task returned status FAIL." />
+</testcase>
+<testcase classname="default" name="Property ASSERT in rr_arbiter at rr_arbiter.sv:154.13-154.34" time="0" type="ASSERT" location="rr_arbiter.sv:154.13-154.34" id="_witness_.check_assert_rr_arbiter_sv_154_113">
+<skipped />
+</testcase>
+<testcase classname="default" name="Property ASSERT in rr_arbiter at rr_arbiter.sv:159.13-159.44" time="0" type="ASSERT" location="rr_arbiter.sv:159.13-159.44" id="_witness_.check_assert_rr_arbiter_sv_159_133" tracefile="engine_0/trace.vcd">
+<failure type="ASSERT" message="Property ASSERT in rr_arbiter at rr_arbiter.sv:159.13-159.44 failed. Trace file: engine_0/trace.vcd" />
+</testcase>
+<testcase classname="default" name="Property ASSERT in rr_arbiter at rr_arbiter.sv:164.13-164.36" time="0" type="ASSERT" location="rr_arbiter.sv:164.13-164.36" id="_witness_.check_assert_rr_arbiter_sv_164_137">
+<skipped />
+</testcase>
+<testcase classname="default" name="Property ASSERT in rr_arbiter at rr_arbiter.sv:169.13-169.41" time="0" type="ASSERT" location="rr_arbiter.sv:169.13-169.41" id="_witness_.check_assert_rr_arbiter_sv_169_157">
+<skipped />
+</testcase>
+<testcase classname="default" name="Property ASSERT in rr_arbiter at rr_arbiter.sv:174.9-174.40" time="0" type="ASSERT" location="rr_arbiter.sv:174.9-174.40" id="_witness_.check_assert_rr_arbiter_sv_174_164">
+<skipped />
+</testcase>
+<system-out>SBY  0:41:02 [rr_arbiter] Removing directory '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-rr-arbiter/formal/rr_arbiter'.
+SBY  0:41:02 [rr_arbiter] Copy '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-rr-arbiter/formal/../rtl/rr_arbiter.sv' to '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-rr-arbiter/formal/rr_arbiter/src/rr_arbiter.sv'.
+SBY  0:41:02 [rr_arbiter] engine_0: smtbmc yices
+SBY  0:41:02 [rr_arbiter] base: starting process &quot;cd rr_arbiter/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY  0:41:02 [rr_arbiter] base: rr_arbiter.sv:31: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+SBY  0:41:02 [rr_arbiter] base: finished (returncode=0)
+SBY  0:41:02 [rr_arbiter] prep: starting process &quot;cd rr_arbiter/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY  0:41:03 [rr_arbiter] prep: finished (returncode=0)
+SBY  0:41:03 [rr_arbiter] smt2: starting process &quot;cd rr_arbiter/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY  0:41:03 [rr_arbiter] smt2: finished (returncode=0)
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: starting process &quot;cd rr_arbiter; yosys-smtbmc -s yices --presat --unroll --noprogress -t 20  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY  0:41:03 [rr_arbiter] engine_0.induction: starting process &quot;cd rr_arbiter; yosys-smtbmc -s yices --presat --unroll -i --noprogress -t 20  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Solver: yices
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  BMC failed!
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Assert failed in rr_arbiter: rr_arbiter.sv:159.13-159.44 (_witness_.check_assert_rr_arbiter_sv_159_133)
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 18..
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 17..
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 16..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+SBY  0:41:03 [rr_arbiter] engine_0.induction: ##   0:00:00  Trying induction in step 15..
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: ##   0:00:00  Status: failed
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: finished (returncode=1)
+SBY  0:41:03 [rr_arbiter] engine_0.basecase: Status returned by engine for basecase: FAIL
+SBY  0:41:03 [rr_arbiter] engine_0.induction: terminating process
+SBY  0:41:03 [rr_arbiter] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  0:41:03 [rr_arbiter] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  0:41:03 [rr_arbiter] summary: engine_0 (smtbmc yices) returned FAIL for basecase
+SBY  0:41:03 [rr_arbiter] summary: counterexample trace [basecase]: rr_arbiter/engine_0/trace.vcd
+SBY  0:41:03 [rr_arbiter] summary:   failed assertion rr_arbiter._witness_.check_assert_rr_arbiter_sv_159_133 at rr_arbiter.sv:159.13-159.44 step 2
+SBY  0:41:03 [rr_arbiter] DONE (FAIL, rc=2)
+</system-out>
+<system-err>
+</system-err>
+</testsuite>
+</testsuites>

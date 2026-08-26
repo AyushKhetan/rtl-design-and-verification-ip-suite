@@ -1,0 +1,8 @@
+# running in rr_arbiter/src/
+read_verilog -formal -sv rr_arbiter.sv
+prep -top rr_arbiter
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

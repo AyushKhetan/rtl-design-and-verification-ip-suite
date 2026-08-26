@@ -1,0 +1,395 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+111 (git sha1 4821ed17b-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: rr_arbiter.sv
+Parsing formal SystemVerilog input from `rr_arbiter.sv' to AST representation.
+Generating RTLIL representation for module `\rr_arbiter'.
+rr_arbiter.sv:31: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:31: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:32: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:32: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:33: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:33: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:33: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+rr_arbiter.sv:33: Warning: Range select out of bounds on signal `\prio': Setting result bit to undef.
+Successfully finished Verilog frontend.
+
+2. Executing PREP pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+Removed 0 unused modules.
+Module rr_arbiter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+Cleaned up 4 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$rr_arbiter.sv:130$110 in module rr_arbiter.
+Marked 4 switch rules as full_case in process $proc$rr_arbiter.sv:111$109 in module rr_arbiter.
+Marked 12 switch rules as full_case in process $proc$rr_arbiter.sv:86$48 in module rr_arbiter.
+Marked 1 switch rules as full_case in process $proc$rr_arbiter.sv:61$47 in module rr_arbiter.
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 12 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset in `\rr_arbiter.$proc$rr_arbiter.sv:61$47'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~22 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:145$166'.
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:172$161'.
+     1/1: $assert$rr_arbiter.sv:174$164_EN
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:167$155'.
+     1/1: $assert$rr_arbiter.sv:169$157_EN
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:162$135'.
+     1/1: $assert$rr_arbiter.sv:164$137_EN
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:157$131'.
+     1/1: $assert$rr_arbiter.sv:159$133_EN
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:152$111'.
+     1/1: $assert$rr_arbiter.sv:154$113_EN
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:130$110'.
+     1/2: $0\formal_valid[0:0]
+     2/2: $0\expected_prio_d[3:0]
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+     1/14: $7\expected_next_prio[3:0] [3:1]
+     2/14: $8\expected_next_prio[0:0]
+     3/14: $7\expected_next_prio[3:0] [0]
+     4/14: $5\expected_next_prio[3:0] [3]
+     5/14: $5\expected_next_prio[3:0] [2:0]
+     6/14: $6\expected_next_prio[3:3]
+     7/14: $3\expected_next_prio[3:0] [3]
+     8/14: $3\expected_next_prio[3:0] [1:0]
+     9/14: $3\expected_next_prio[3:0] [2]
+    10/14: $4\expected_next_prio[2:2]
+    11/14: $1\expected_next_prio[3:0] [3:2]
+    12/14: $1\expected_next_prio[3:0] [0]
+    13/14: $1\expected_next_prio[3:0] [1]
+    14/14: $2\expected_next_prio[1:1]
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+     1/16: $4\expected_grant[3:0]
+     2/16: $1$bitselwrite$pos$rr_arbiter.sv:102$7[31:0]$101
+     3/16: $4\fidx[31:0]
+     4/16: $3\expected_grant[3:0]
+     5/16: $1$bitselwrite$pos$rr_arbiter.sv:102$6[31:0]$87
+     6/16: $3\fidx[31:0]
+     7/16: $2\expected_grant[3:0]
+     8/16: $1$bitselwrite$pos$rr_arbiter.sv:102$5[31:0]$73
+     9/16: $2\fidx[31:0]
+    10/16: $1\expected_grant[3:0]
+    11/16: $1$bitselwrite$pos$rr_arbiter.sv:102$4[31:0]$59
+    12/16: $1\fidx[31:0]
+    13/16: $4\fstart[31:0]
+    14/16: $3\fstart[31:0]
+    15/16: $2\fstart[31:0]
+    16/16: $1\fstart[31:0]
+Creating decoders for process `\rr_arbiter.$proc$rr_arbiter.sv:61$47'.
+     1/1: $0\prio[3:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\rr_arbiter.\expected_next_prio' from process `\rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+No latch inferred for signal `\rr_arbiter.\pi' from process `\rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+No latch inferred for signal `\rr_arbiter.\expected_grant' from process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+No latch inferred for signal `\rr_arbiter.\fk' from process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+No latch inferred for signal `\rr_arbiter.\fstart' from process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+No latch inferred for signal `\rr_arbiter.\foffset' from process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+No latch inferred for signal `\rr_arbiter.\fidx' from process `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\rr_arbiter.\expected_prio_d' using process `\rr_arbiter.$proc$rr_arbiter.sv:130$110'.
+  created $dff cell `$procdff$273' with positive edge clock.
+Creating register for signal `\rr_arbiter.\formal_valid' using process `\rr_arbiter.$proc$rr_arbiter.sv:130$110'.
+  created $dff cell `$procdff$274' with positive edge clock.
+Creating register for signal `\rr_arbiter.\prio' using process `\rr_arbiter.$proc$rr_arbiter.sv:61$47'.
+  created $adff cell `$procdff$277' with positive edge clock and positive level reset.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:145$166'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:172$161'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:172$161'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:167$155'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:167$155'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:162$135'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:162$135'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:157$131'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:157$131'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:152$111'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:152$111'.
+Found and cleaned up 1 empty switch in `\rr_arbiter.$proc$rr_arbiter.sv:130$110'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:130$110'.
+Found and cleaned up 4 empty switches in `\rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:111$109'.
+Found and cleaned up 12 empty switches in `\rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:86$48'.
+Removing empty process `rr_arbiter.$proc$rr_arbiter.sv:61$47'.
+Cleaned up 22 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+<suppressed ~50 debug messages>
+
+2.3. Executing FUTURE pass.
+
+2.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+
+2.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rr_arbiter..
+Removed 11 unused cells and 161 unused wires.
+<suppressed ~15 debug messages>
+
+2.6. Executing CHECK pass (checking for obvious problems).
+Checking module rr_arbiter...
+Found and reported 0 problems.
+
+2.7. Executing OPT pass (performing simple optimizations).
+
+2.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+
+2.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 130 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 127 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 124 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+2.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$188.
+    dead port 2/2 on $mux $procmux$200.
+    dead port 2/2 on $mux $procmux$212.
+    dead port 2/2 on $mux $procmux$224.
+Removed 4 multiplexer ports.
+<suppressed ~78 debug messages>
+
+2.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rr_arbiter.
+Performed a total of 0 changes.
+
+2.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 120 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Computing hashes of 116 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+2.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rr_arbiter..
+Removed 0 unused cells and 14 unused wires.
+<suppressed ~1 debug messages>
+
+2.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+
+2.7.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.7.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rr_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~62 debug messages>
+
+2.7.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rr_arbiter.
+Performed a total of 0 changes.
+
+2.7.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 116 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Removed a total of 0 cells.
+
+2.7.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rr_arbiter..
+
+2.7.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+
+2.7.14. Finished fast OPT passes. (There is nothing left to do.)
+
+2.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 4) from port A of cell rr_arbiter.$or$rr_arbiter.sv:35$19 ($or).
+Removed top 2 bits (of 4) from port A of cell rr_arbiter.$or$rr_arbiter.sv:38$23 ($or).
+Removed top 3 bits (of 4) from port B of cell rr_arbiter.$or$rr_arbiter.sv:49$33 ($or).
+Removed top 2 bits (of 4) from port B of cell rr_arbiter.$or$rr_arbiter.sv:52$37 ($or).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:96$53 ($add).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$ge$rr_arbiter.sv:98$54 ($ge).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$sub$rr_arbiter.sv:99$55 ($sub).
+Removed top 1 bits (of 33) from port A of cell rr_arbiter.$neg$rr_arbiter.sv:102$64 ($neg).
+Removed top 30 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:96$67 ($add).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$ge$rr_arbiter.sv:98$68 ($ge).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$sub$rr_arbiter.sv:99$69 ($sub).
+Removed top 1 bits (of 33) from port A of cell rr_arbiter.$neg$rr_arbiter.sv:102$78 ($neg).
+Removed top 29 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:96$81 ($add).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$ge$rr_arbiter.sv:98$82 ($ge).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$sub$rr_arbiter.sv:99$83 ($sub).
+Removed top 1 bits (of 33) from port A of cell rr_arbiter.$neg$rr_arbiter.sv:102$92 ($neg).
+Removed top 29 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:96$95 ($add).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$ge$rr_arbiter.sv:98$96 ($ge).
+Removed top 28 bits (of 32) from port B of cell rr_arbiter.$sub$rr_arbiter.sv:99$97 ($sub).
+Removed top 1 bits (of 33) from port A of cell rr_arbiter.$neg$rr_arbiter.sv:102$106 ($neg).
+Removed top 31 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:154$117 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:154$117 ($add).
+Removed top 30 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:154$117 ($add).
+Removed top 30 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:154$121 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:154$121 ($add).
+Removed top 29 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:154$121 ($add).
+Removed top 29 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:154$125 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:154$125 ($add).
+Removed top 28 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:154$125 ($add).
+Removed top 28 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:154$129 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:154$129 ($add).
+Removed top 27 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:154$129 ($add).
+Removed top 27 bits (of 32) from port A of cell rr_arbiter.$eq$rr_arbiter.sv:154$130 ($eq).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$eq$rr_arbiter.sv:154$130 ($eq).
+Removed top 31 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:164$141 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:164$141 ($add).
+Removed top 30 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:164$141 ($add).
+Removed top 30 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:164$145 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:164$145 ($add).
+Removed top 29 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:164$145 ($add).
+Removed top 29 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:164$149 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:164$149 ($add).
+Removed top 28 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:164$149 ($add).
+Removed top 28 bits (of 32) from port A of cell rr_arbiter.$add$rr_arbiter.sv:164$153 ($add).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$add$rr_arbiter.sv:164$153 ($add).
+Removed top 27 bits (of 32) from port Y of cell rr_arbiter.$add$rr_arbiter.sv:164$153 ($add).
+Removed top 27 bits (of 32) from port A of cell rr_arbiter.$le$rr_arbiter.sv:164$154 ($le).
+Removed top 31 bits (of 32) from port B of cell rr_arbiter.$le$rr_arbiter.sv:164$154 ($le).
+Removed top 31 bits (of 32) from mux cell rr_arbiter.$procmux$269 ($mux).
+Removed top 27 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:154$129_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:154$128_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$2\fstart[31:0].
+Removed top 28 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:154$125_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:154$124_Y.
+Removed top 27 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:164$153_Y.
+Removed top 29 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:154$121_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:154$120_Y.
+Removed top 28 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:164$149_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:164$148_Y.
+Removed top 30 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:154$117_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:154$116_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:164$152_Y.
+Removed top 29 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:164$145_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:164$144_Y.
+Removed top 30 bits (of 32) from wire rr_arbiter.$add$rr_arbiter.sv:164$141_Y.
+Removed top 31 bits (of 32) from wire rr_arbiter.$eqx$rr_arbiter.sv:164$140_Y.
+
+2.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rr_arbiter..
+Removed 0 unused cells and 17 unused wires.
+<suppressed ~1 debug messages>
+
+2.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.11. Executing OPT pass (performing simple optimizations).
+
+2.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rr_arbiter.
+
+2.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rr_arbiter'.
+Computing hashes of 116 cells of `\rr_arbiter'.
+Finding duplicate cells in `\rr_arbiter'.
+Removed a total of 0 cells.
+
+2.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rr_arbiter..
+
+2.11.4. Finished fast OPT passes.
+
+2.12. Executing SORT pass.
+
+2.13. Printing statistics.
+
+=== rr_arbiter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      115 wires
+     1167 wire bits
+       30 public wires
+      242 public wire bits
+        4 ports
+       10 port bits
+      116 cells
+       12   $add
+        1   $adff
+        5   $and
+        6   $check
+        2   $dff
+        3   $eq
+        8   $eqx
+        4   $ge
+        1   $le
+        4   $logic_and
+        6   $logic_not
+       29   $mux
+        5   $neg
+        4   $not
+       14   $or
+        4   $shift
+        4   $shiftx
+        4   $sub
+
+2.14. Executing CHECK pass (checking for obvious problems).
+Checking module rr_arbiter...
+Found and reported 0 problems.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `rr_arbiter'. Setting top module to rr_arbiter.
+
+3.1. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+
+3.2. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+Removed 0 unused modules.
+Module rr_arbiter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+4. Executing jny backend.
+
+5. Executing RTLIL backend.
+Output filename: ../model/design.il
+
+Warnings: 1 unique messages, 8 total
+End of script. Logfile hash: 124c04946b, time: 0.15s, user: 0.07s, system: 0.05s, MEM: 19.12 MB peak
+Yosys 0.67+111 (git sha1 4821ed17b-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+Time spent: 19% 2x read_verilog (0 sec), 16% 5x opt_clean (0 sec), ...

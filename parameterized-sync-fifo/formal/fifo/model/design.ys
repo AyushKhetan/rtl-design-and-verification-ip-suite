@@ -1,0 +1,9 @@
+# running in fifo/src/
+read -formal -sv fifo.sv
+read -formal -sv fifo_formal.sv
+prep -top fifo_formal
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

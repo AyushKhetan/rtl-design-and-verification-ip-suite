@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite timestamp="2026-08-21T00:24:17" hostname="Vivobook" package="fifo" id="0" name="default" tests="3" errors="0" failures="0" time="0" skipped="0">
+<properties>
+<property name="os" value="Linux"/>
+<property name="expect" value="PASS"/>
+<property name="status" value="PASS"/>
+</properties>
+<testcase classname="default" name="build execution" time="0">
+</testcase>
+<testcase classname="default" name="Property ASSERT in fifo_formal at fifo_formal.sv:55.13-55.42" time="0" type="ASSERT" location="fifo_formal.sv:55.13-55.42" id="_witness_.check_assert_fifo_formal_sv_55_8">
+</testcase>
+<testcase classname="default" name="Property ASSERT in fifo_formal at fifo_formal.sv:58.13-58.45" time="0" type="ASSERT" location="fifo_formal.sv:58.13-58.45" id="_witness_.check_assert_fifo_formal_sv_58_11">
+</testcase>
+<testcase classname="default" name="Property ASSERT in fifo_formal at fifo_formal.sv:61.13-61.35" time="0" type="ASSERT" location="fifo_formal.sv:61.13-61.35" id="_witness_.check_assert_fifo_formal_sv_61_14">
+</testcase>
+<system-out>SBY  0:24:16 [fifo] Removing directory '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-sync-fifo/formal/fifo'.
+SBY  0:24:16 [fifo] Copy '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-sync-fifo/formal/../rtl/fifo.sv' to '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-sync-fifo/formal/fifo/src/fifo.sv'.
+SBY  0:24:16 [fifo] Copy '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-sync-fifo/formal/fifo_formal.sv' to '/mnt/c/Users/Ayush/OneDrive/Documents/Project/parameterized-sync-fifo/formal/fifo/src/fifo_formal.sv'.
+SBY  0:24:16 [fifo] engine_0: smtbmc
+SBY  0:24:16 [fifo] base: starting process &quot;cd fifo/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\wr_en is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\rd_en is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [15] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [14] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [13] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [12] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [11] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [10] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [9] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [8] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [7] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [6] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [5] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [4] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [3] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [2] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [1] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\din [0] is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\clk is used but has no driver.
+SBY  0:24:16 [fifo] base: Warning: Wire fifo_formal.\reset is used but has no driver.
+SBY  0:24:16 [fifo] base: finished (returncode=0)
+SBY  0:24:16 [fifo] prep: starting process &quot;cd fifo/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\wr_en is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\rd_en is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [15] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [14] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [13] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [12] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [11] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [10] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [9] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [8] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [7] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [6] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [5] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [4] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [3] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [2] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [1] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\din [0] is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\clk is used but has no driver.
+SBY  0:24:16 [fifo] prep: Warning: Wire fifo_formal.\reset is used but has no driver.
+SBY  0:24:16 [fifo] prep: finished (returncode=0)
+SBY  0:24:16 [fifo] smt2: starting process &quot;cd fifo/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY  0:24:16 [fifo] smt2: finished (returncode=0)
+SBY  0:24:16 [fifo] engine_0.basecase: starting process &quot;cd fifo; yosys-smtbmc --presat --unroll --noprogress -t 20  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY  0:24:16 [fifo] engine_0.induction: starting process &quot;cd fifo; yosys-smtbmc --presat --unroll -i --noprogress -t 20  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Solver: yices
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Trying induction in step 20..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY  0:24:17 [fifo] engine_0.basecase: ##   0:00:00  Status: passed
+SBY  0:24:17 [fifo] engine_0.basecase: finished (returncode=0)
+SBY  0:24:17 [fifo] engine_0.basecase: Status returned by engine for basecase: pass
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Trying induction in step 19..
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Trying induction in step 18..
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY  0:24:17 [fifo] engine_0.induction: ##   0:00:00  Status: passed
+SBY  0:24:17 [fifo] engine_0.induction: finished (returncode=0)
+SBY  0:24:17 [fifo] engine_0.induction: Status returned by engine for induction: pass
+SBY  0:24:17 [fifo] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  0:24:17 [fifo] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  0:24:17 [fifo] summary: engine_0 (smtbmc) returned pass for basecase
+SBY  0:24:17 [fifo] summary: engine_0 (smtbmc) returned pass for induction
+SBY  0:24:17 [fifo] summary: engine_0 did not produce any traces
+SBY  0:24:17 [fifo] summary: successful proof by k-induction.
+SBY  0:24:17 [fifo] DONE (PASS, rc=0)
+</system-out>
+<system-err>
+</system-err>
+</testsuite>
+</testsuites>

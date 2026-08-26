@@ -1,0 +1,73 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+111 (git sha1 4821ed17b-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+
+-- Executing script file `design_smt2.ys' --
+
+1. Executing RTLIL frontend.
+Input filename: design_prep.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `rr_arbiter'. Setting top module to rr_arbiter.
+
+2.1. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+
+2.2. Analyzing design hierarchy..
+Top module:  \rr_arbiter
+Removed 0 unused modules.
+Module rr_arbiter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3. Executing FORMALFF pass.
+
+4. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+5. Printing statistics.
+
+=== rr_arbiter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      126 wires
+     1091 wire bits
+       34 public wires
+      249 public wire bits
+        4 ports
+       10 port bits
+      129 cells
+        9   $add
+        5   $and
+        3   $anyinit
+        4   $anyseq
+        5   $assert
+        2   $assume
+        3   $eq
+        8   $eqx
+        7   $ff
+        4   $ge
+        1   $initstate
+        1   $le
+        4   $logic_and
+        6   $logic_not
+       31   $mux
+        5   $neg
+        5   $not
+       14   $or
+        4   $shift
+        4   $shiftx
+        4   $sub
+
+6. Executing SMT2 backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module rr_arbiter.
+
+End of script. Logfile hash: a218738f75, time: 0.03s, user: 0.01s, system: 0.02s, MEM: 16.62 MB peak
+Yosys 0.67+111 (git sha1 4821ed17b-dirty, Release, Clang /usr/bin/clang++ 21.1.8)
+Time spent: 64% 2x write_smt2 (0 sec), 23% 2x read_rtlil (0 sec), ...
