@@ -1,70 +1,60 @@
 # RTL Design & Verification IP Suite
 
-A collection of reusable Verilog/SystemVerilog IP blocks developed around **RTL architecture, functional verification, CDC, formal properties, and SoC integration**. The suite brings together parameterized control and storage structures, serial peripherals, and a memory-mapped DMA path.
+A collection of reusable SystemVerilog IP blocks and verification exercises for digital-design and SoC-integration workflows. The suite covers FIFO architectures, arbitration, streaming interfaces, serial peripherals, and memory-mapped DMA control, with simulation-based verification and formal-property experiments.
 
-## IP portfolio
+## Highlights
 
-| IP block | Overview | Verification collateral |
-|---|---|---|
-| **Parameterized synchronous FIFO** | Configurable FIFO RTL with synchronous read/write control and full/empty handling | Self-checking testbench and formal harness |
-| **Asynchronous FIFO** | Dual-clock FIFO using Gray-coded pointers and multi-flop synchronization for clock-domain crossing | Simulation testbench, SVA, and formal configurations |
-| **Round-robin arbiter** | Parameterized arbitration with rotating priority and grant logic | Self-checking testbench and formal harness |
-| **UART** | UART transmitter and receiver with serial loopback testing | Standalone TX/RX testbenches and loopback testbench |
-| **APB-controlled UART** | Memory-mapped UART registers and APB-to-UART integration, including status and receive-data handling | Register-block and integrated top-level testbenches |
-| **SPI master** | RTL implementation of a serial peripheral interface master | Testbench |
-| **MMIO-based DMA controller** | DMA engine and register interface for memory-mapped control and SoC integration | DMA engine and top-level testbenches; see verification notes below |
-| **SoC bus support** | Bus logic used by the integration-oriented RTL | RTL source |
-
-The suite also includes work on a **ready/valid skid buffer**; its standalone RTL and testbench are not included in the current repository snapshot.
-
-## Design and verification approach
-
-The projects emphasize:
-
-- **Reusable RTL:** modular interfaces and parameterization where appropriate.
-- **Functional verification:** self-checking testbenches for normal operation, boundary conditions, reset behavior, and interface corner cases.
-- **CDC-aware design:** Gray-coded FIFO pointers and synchronizer stages in the asynchronous FIFO.
-- **Assertions and formal methods:** SVA and SymbiYosys/Yosys formal harnesses for selected designs.
-- **Integration testing:** APB register accesses and UART serial loopback through the integrated peripheral top.
-- **Implementation awareness:** synthesizable RTL and attention to hardware architecture rather than behavioral-only models.
-
-Formal infrastructure is provided for selected blocks; its presence should not be interpreted as proof that every design has a passing formal result. In particular, the round-robin arbiter's saved formal artifacts include a failure that needs to be investigated. DMA verification collateral is also incomplete in the supplied snapshot, so the DMA tests and their dependencies should be reviewed before treating the environment as a complete regression.
+- **Parameterized FIFOs:** synchronous FIFO and asynchronous FIFO with Gray-coded pointer synchronization for clock-domain crossing.
+- **Arbitration and streaming control:** round-robin arbiter and ready/valid skid-buffer design work for flow control and interface corner cases.
+- **Serial interfaces:** UART transmitter/receiver, serial loopback, and an SPI master.
+- **Memory-mapped peripheral integration:** APB-controlled UART with programmable registers, status reporting, and serial-loopback verification.
+- **DMA and SoC integration:** MMIO-based DMA controller, register interface, transfer engine, and bus support.
+- **Verification:** self-checking SystemVerilog testbenches, SystemVerilog Assertions (SVA), and SymbiYosys/Yosys formal-verification setups for selected blocks.
 
 ## Repository structure
 
-```text
-.
-├── parameterized-sync-fifo/   # Synchronous FIFO RTL, testbench, formal harness
-├── async-fifo/                # Asynchronous FIFO, CDC logic, SVA, formal collateral
-├── parameterized-rr-arbiter/  # Round-robin arbiter and verification collateral
-├── uart/                      # UART TX/RX and loopback tests
-├── apb/                       # APB register block and APB–UART integration
-├── spi/                       # SPI master and testbench
-├── dma/                       # DMA engine, registers, top level, specification, tests
-└── bus/                       # SoC bus support RTL
-```
+| Directory | Contents |
+|---|---|
+| `parameterized-sync-fifo/` | Parameterized synchronous FIFO, simulation testbench, and formal harness |
+| `async-fifo/` | Asynchronous FIFO, CDC-oriented pointer logic, assertions, testbench, and formal configuration |
+| `parameterized-rr-arbiter/` | Round-robin arbiter, self-checking testbench, and formal collateral |
+| `uart/` | UART TX/RX RTL and standalone/loopback testbenches |
+| `apb/` | APB register block and APB–UART integration top with testbenches |
+| `spi/` | SPI master RTL and testbench |
+| `dma/` | DMA engine, top-level integration, registers, specification, and testbenches |
+| `bus/` | SoC bus support RTL |
 
-Individual IP blocks are kept in separate directories so their RTL, tests, and formal setups can be developed independently.
+The ready/valid skid-buffer design is part of the suite's stated scope, but its standalone source is not present in this exported snapshot. Add the RTL and corresponding tests to the repository when available.
 
-## Tooling
+## Verification approach
 
-The repository uses open-source RTL and verification tools where supported:
+Verification is organized around focused, block-level tests and formal checks where applicable:
 
-- **Icarus Verilog** (`iverilog`, `vvp`) — simulation
-- **GTKWave** — waveform inspection
-- **Yosys** — RTL analysis and synthesis
-- **SymbiYosys** (`sby`) — formal verification orchestration
+1. **Simulation:** exercise reset behavior, normal transactions, boundary conditions, and interface corner cases using self-checking testbenches.
+2. **Assertions:** express protocol and control invariants with SVA where supported.
+3. **Formal checks:** use the supplied SymbiYosys configurations to explore properties of selected FIFO and arbitration logic.
+4. **Integration testing:** exercise APB register access and UART serial loopback through the integrated top.
 
-Tool requirements and invocation commands vary by block. Consult the testbench and `.sby` configuration in each project, and rerun checks from a clean checkout before relying on a result.
+Formal collateral is not a blanket claim that every IP block has been formally proven. In particular, re-run the arbiter formal job and review its result before relying on it as a passing proof. Likewise, re-run simulations from a clean checkout before publishing specific pass claims.
 
-## Getting started
+## Toolchain
 
-1. Choose an IP block and inspect its RTL and testbench.
-2. Compile and run its testbench with the required source files and simulator.
-3. For blocks with formal configurations, run the corresponding SymbiYosys job separately from simulation.
-4. Review waveforms or counterexamples when a check fails.
-5. Keep documented verification status aligned with reproducible results from the current source.
+- **Icarus Verilog** (`iverilog`, `vvp`) for simulation
+- **GTKWave** for waveform inspection
+- **Yosys / SymbiYosys** (`yosys`, `sby`) for synthesis-oriented and formal flows
 
-## Scope
+Tool compatibility depends on the constructs in each testbench and formal harness. Run each block from its directory or adapt source paths to your local tool setup.
 
-This repository brings together reusable RTL IP spanning FIFOs, arbitration, serial interfaces, and memory-mapped SoC integration. The emphasis is on both the hardware architecture and the verification collateral used to exercise it.
+## Suggested starting points
+
+- FIFO behavior: `parameterized-sync-fifo/rtl/fifo.sv`, `parameterized-sync-fifo/tb/tb_fifo.sv`
+- Asynchronous FIFO / CDC: `async-fifo/rtl/async_fifo.sv`
+- Arbitration: `parameterized-rr-arbiter/rtl/rr_arbiter.sv`
+- UART and loopback: `uart/rtl/uart_tx.sv`, `uart/rtl/uart_rx.sv`, `uart/tb/uart_loopback_tb.sv`
+- APB–UART integration: `apb/rtl/uart_apb_top.sv`, `apb/tb/tb_uart_apb_top.sv`
+- SPI master: `spi/rtl/spi_master.sv`
+- DMA: `dma/rtl/dma.sv`, `dma/docs/dma_spec.md`
+
+## Scope and status
+
+This repository documents RTL design and verification work across reusable IP blocks, CDC, serial interfaces, and SoC integration. The source snapshot contains the synchronous/asynchronous FIFO, arbiter, UART, APB–UART, SPI, and DMA source trees listed above. A few details may need to be completed or revalidated in a clean environment; do not interpret the presence of a formal configuration or an old result file as proof that the latest source passes every check.

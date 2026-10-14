@@ -7,6 +7,7 @@ smtbmc yices
 
 [script]
 read_verilog -formal -sv rr_arbiter.sv
+chparam -set N 6 rr_arbiter
 prep -top rr_arbiter
 
 [files]

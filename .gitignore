@@ -1,0 +1,21 @@
+*.vcd
+*.vvp
+*.out
+*_sim
+engine_0/
+model/
+*.sqlite
+*.xml
+*.json
+*.il
+*.smt2
+*.log
+.DS_Store
+.vscode/
+
+# Generated formal-verification artifacts
+**/formal/**/engine_*/
+**/formal/**/trace*.vcd
+
+# Simulation build directories
+**/sim/

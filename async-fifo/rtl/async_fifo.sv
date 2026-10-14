@@ -64,9 +64,9 @@ always @(posedge wr_clk or posedge wr_rst) begin
         wr_ptr <= 0;
         wr_ptr_gray <= 0;
         full <= 0;
-    end 
+    end
     else begin
-        if (write_fire) 
+        if (write_fire)
             mem[wr_ptr[ADDR_WIDTH-1:0]] <= wr_data;
         wr_ptr <= wr_ptr_nxt;
         wr_ptr_gray <= wr_ptr_gray_nxt;
@@ -99,7 +99,7 @@ always @(posedge rd_clk or posedge rd_rst) begin
         rd_ptr_gray <= 0;
         rd_data <= 0;
         empty <= 1;
-    end 
+    end
     else begin
         if(read_fire)
             rd_data <= mem[rd_ptr[ADDR_WIDTH-1:0]];

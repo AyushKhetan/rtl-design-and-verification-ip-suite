@@ -1,5 +1,5 @@
 module rr_arbiter #(
-    parameter int N = 4
+    parameter int N = 8
 )(
     input  logic         clk,
     input  logic         reset,
@@ -7,53 +7,105 @@ module rr_arbiter #(
     output logic [N-1:0] grant
 );
 
+    // Parameters
+
+    localparam  int INDEX_W = (N <= 1) ? 1 : $clog2(N);
+    localparam int COUNT_W = (N <= 1) ? 1 : $clog2(N + 1);
 
     logic [N-1:0] prio;
     logic [N-1:0] next_prio;
 
-    // Your combinational logic here:
-    // 1. circularly rotate req
-    // 2. isolate lowest set bit
-    // 3. rotate grant back
-    // 4. determine next priority
-
-    logic [N-1:0] circ;
     logic [N-1:0] grant_circ;
 
-    logic [N-1:0] ror1, ror2, ror4;
-    logic rotate1, rotate2, rotate4;
-    logic [N-1:0] stage1, stage2;
+    logic [N-1:0] ror_stage [0:INDEX_W];
 
-    logic [N-1:0] rol1, rol2, rol4;
-    logic roll1, roll2, roll4;
-    logic [N-1:0] stage3, stage4;
+    logic [N-1:0] index_mask;
 
-    assign rotate1 = prio[1] | prio[3] | prio[5] | prio[7];
-    assign rotate2 = prio[2] | prio[3] | prio[6] | prio[7];
-    assign rotate4 = prio[4] | prio[5] | prio[6] | prio[7];
+    assign index_mask = ~prio & (prio - 1'b1);
 
-    assign ror1 = (req >> 1) | (req << (N - 1));
-    assign stage1 = rotate1 ? ror1 : req;
+    localparam int LEVELS = (N <= 1) ? 0 : $clog2(N);
 
-    assign ror2 = (stage1 >> 2) | (stage1 << (N - 2));
-    assign stage2 = rotate2 ? ror2 : stage1;
+    logic [COUNT_W-1:0] pop_tree [0:LEVELS][0:N-1];
+    logic [INDEX_W-1:0] index;
 
-    assign ror4 = (stage2 >> 4) | (stage2 << (N - 4));
-    assign circ = rotate4 ? ror4 : stage2;
+    genvar l, j;
+
+    generate
+
+        // Level 0: individual bits
+        for (j = 0; j < N; j = j + 1) begin : GEN_POP_INPUT
+            assign pop_tree[0][j] = {{(COUNT_W-1){1'b0}}, index_mask[j]};
+        end
+
+        // Successive adder levels
+        for (l = 0; l < LEVELS; l = l + 1) begin : GEN_POP_LEVEL
+
+            for (j = 0; j < N; j = j + 1) begin : GEN_POP_NODE
+
+                if ((2*j + 1) < ((N + (1 << l) - 1) >> l)) begin
+
+                    assign pop_tree[l+1][j] = pop_tree[l][2*j] + pop_tree[l][2*j+1];
+
+                end
+                else if (j < ((N + (1 << l) - 1) >> (l+1))) begin
+
+                    assign pop_tree[l+1][j] = pop_tree[l][2*j];
+
+                end
+                else begin
+
+                    assign pop_tree[l+1][j] = '0;
+
+                end
+
+            end
+        end
+
+    endgenerate
+
+    assign index = pop_tree[LEVELS][0];
+
+    assign ror_stage [0] = req;
+
+    genvar k;
+    generate
+        for(k=0; k < INDEX_W; k=k+1) begin: GEN_ROR
+            localparam  int SHIFT = 1 << k;
+
+            if (SHIFT < N) begin
+                assign ror_stage[k+1] = index[k]? ((ror_stage[k] >> SHIFT) | (ror_stage[k] << (N-SHIFT))): ror_stage[k];
+            end
+            else begin
+                assign ror_stage[k+1] = ror_stage[k];
+            end
+        end
+    endgenerate
+
 
     // Isolate lowest set bit
     // This is a common trick to isolate the lowest set bit in a binary number.
-    assign grant_circ = circ & -circ;
+    assign grant_circ = ror_stage[INDEX_W] & -ror_stage[INDEX_W];
 
 
-    assign rol1 = (grant_circ << 1) | (grant_circ >> (N - 1));
-    assign stage3 = rotate1 ? rol1 : grant_circ;
+    logic [N-1:0] rol_stage [0:INDEX_W];
 
-    assign rol2 = (stage3 << 2) | (stage3 >> (N - 2));
-    assign stage4 = rotate2 ? rol2 : stage3;
+    assign rol_stage[0] = grant_circ;
 
-    assign rol4 = (stage4 << 4) | (stage4 >> (N - 4));
-    assign grant = rotate4 ? rol4 : stage4;
+    generate
+        for (k = 0; k < INDEX_W; k = k + 1) begin : GEN_ROL
+            localparam int SHIFT = 1 << k;
+
+            if (SHIFT < N) begin
+                assign rol_stage[k+1] =
+                    index[k]? ((rol_stage[k] << SHIFT) | (rol_stage[k] >> (N - SHIFT))): rol_stage[k];
+            end
+            else begin
+                assign rol_stage[k+1] = rol_stage[k];
+            end
+        end
+    endgenerate
+
+    assign grant = rol_stage[INDEX_W];
 
     assign next_prio = (grant == 0) ? prio : (grant << 1) | grant[N-1];
 
