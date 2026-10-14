@@ -1,100 +1,70 @@
-# Parameterized RTL Design & Verification
+# RTL Design & Verification IP Suite
 
-A growing collection of **parameterized RTL designs** developed with an emphasis on clean hardware architecture, synthesizability, simulation-based verification, and formal verification.
+A collection of reusable Verilog/SystemVerilog IP blocks developed around **RTL architecture, functional verification, CDC, formal properties, and SoC integration**. The suite brings together parameterized control and storage structures, serial peripherals, and a memory-mapped DMA path.
 
-The repository is intended as a practical RTL/design-verification portfolio as well as a working record of progressively more sophisticated digital design projects.
+## IP portfolio
 
-## Projects
-
-| Project | Description | Verification |
+| IP block | Overview | Verification collateral |
 |---|---|---|
-| [`parameterized-rr-arbiter`](./parameterized-rr-arbiter) | Parameterized round-robin arbiter with circular priority and one-hot grant generation | Simulation + formal verification |
-| [`parameterized-sync-fifo`](./parameterized-sync-fifo) | Parameterized synchronous FIFO | Simulation-based verification |
-| [`async-fifo`](./async-fifo) | Parameterized asynchronous FIFO / clock-domain-crossing design | RTL development; verification flow under development |
+| **Parameterized synchronous FIFO** | Configurable FIFO RTL with synchronous read/write control and full/empty handling | Self-checking testbench and formal harness |
+| **Asynchronous FIFO** | Dual-clock FIFO using Gray-coded pointers and multi-flop synchronization for clock-domain crossing | Simulation testbench, SVA, and formal configurations |
+| **Round-robin arbiter** | Parameterized arbitration with rotating priority and grant logic | Self-checking testbench and formal harness |
+| **UART** | UART transmitter and receiver with serial loopback testing | Standalone TX/RX testbenches and loopback testbench |
+| **APB-controlled UART** | Memory-mapped UART registers and APB-to-UART integration, including status and receive-data handling | Register-block and integrated top-level testbenches |
+| **SPI master** | RTL implementation of a serial peripheral interface master | Testbench |
+| **MMIO-based DMA controller** | DMA engine and register interface for memory-mapped control and SoC integration | DMA engine and top-level testbenches; see verification notes below |
+| **SoC bus support** | Bus logic used by the integration-oriented RTL | RTL source |
 
-## Design Philosophy
+The suite also includes work on a **ready/valid skid buffer**; its standalone RTL and testbench are not included in the current repository snapshot.
 
-The projects follow a few principles:
+## Design and verification approach
 
-- **Parameterization** — widths, depths, and other architectural dimensions should be configurable where practical.
-- **Synthesizable RTL** — designs are written with implementation in mind rather than as purely behavioral models.
-- **Architecture before code** — derive the hardware structure first and then express it in RTL.
-- **Verification alongside design** — functional verification and formal properties are developed as part of the design process.
-- **Corner-case driven development** — reset behavior, boundary conditions, wrap-around, empty/full conditions, and other edge cases are treated explicitly.
-- **Implementation awareness** — synthesis results are inspected to understand the actual hardware implied by the RTL.
+The projects emphasize:
 
-## Verification
+- **Reusable RTL:** modular interfaces and parameterization where appropriate.
+- **Functional verification:** self-checking testbenches for normal operation, boundary conditions, reset behavior, and interface corner cases.
+- **CDC-aware design:** Gray-coded FIFO pointers and synchronizer stages in the asynchronous FIFO.
+- **Assertions and formal methods:** SVA and SymbiYosys/Yosys formal harnesses for selected designs.
+- **Integration testing:** APB register accesses and UART serial loopback through the integrated peripheral top.
+- **Implementation awareness:** synthesizable RTL and attention to hardware architecture rather than behavioral-only models.
 
-The verification approach varies with the project and includes:
+Formal infrastructure is provided for selected blocks; its presence should not be interpreted as proof that every design has a passing formal result. In particular, the round-robin arbiter's saved formal artifacts include a failure that needs to be investigated. DMA verification collateral is also incomplete in the supplied snapshot, so the DMA tests and their dependencies should be reviewed before treating the environment as a complete regression.
 
-- Directed simulation
-- Self-checking testbenches
-- Waveform inspection
-- SystemVerilog Assertions (SVA)
-- Formal verification using **Yosys + SymbiYosys**
-- Synthesis inspection using **Yosys**
-
-The goal is not merely to obtain passing simulations, but to understand **what properties define correct hardware behavior** and to verify those properties as rigorously as practical.
-
-## Repository Structure
+## Repository structure
 
 ```text
-parameterized-rtl-design-verification/
-│
-├── parameterized-rr-arbiter/
-│   ├── rtl/
-│   ├── tb/
-│   ├── formal/
-│   └── ...
-│
-├── parameterized-sync-fifo/
-│   └── ...
-│
-├── async-fifo/
-│   ├── rtl/
-│   └── ...
-│
-└── README.md
+.
+├── parameterized-sync-fifo/   # Synchronous FIFO RTL, testbench, formal harness
+├── async-fifo/                # Asynchronous FIFO, CDC logic, SVA, formal collateral
+├── parameterized-rr-arbiter/  # Round-robin arbiter and verification collateral
+├── uart/                      # UART TX/RX and loopback tests
+├── apb/                       # APB register block and APB–UART integration
+├── spi/                       # SPI master and testbench
+├── dma/                       # DMA engine, registers, top level, specification, tests
+└── bus/                       # SoC bus support RTL
 ```
 
-Individual projects are intentionally kept self-contained so that their RTL, testbench, and verification infrastructure can evolve independently.
+Individual IP blocks are kept in separate directories so their RTL, tests, and formal setups can be developed independently.
 
-## Tools
+## Tooling
 
-The projects primarily use open-source HDL and verification tooling, including:
+The repository uses open-source RTL and verification tools where supported:
 
-- **SystemVerilog / Verilog**
-- **Yosys** — synthesis and RTL analysis
-- **SymbiYosys (SBY)** — formal verification orchestration
-- **Yosys SMTBMC** — bounded/model-checking based formal verification
-- **Icarus Verilog** — simulation where applicable
-- **GTKWave** — waveform inspection where applicable
+- **Icarus Verilog** (`iverilog`, `vvp`) — simulation
+- **GTKWave** — waveform inspection
+- **Yosys** — RTL analysis and synthesis
+- **SymbiYosys** (`sby`) — formal verification orchestration
 
-Exact tool requirements and commands may differ between projects; see the README or scripts inside an individual project where provided.
+Tool requirements and invocation commands vary by block. Consult the testbench and `.sby` configuration in each project, and rerun checks from a clean checkout before relying on a result.
 
-## Current Learning Focus
+## Getting started
 
-The repository is being developed progressively, with increasing emphasis on:
+1. Choose an IP block and inspect its RTL and testbench.
+2. Compile and run its testbench with the required source files and simulator.
+3. For blocks with formal configurations, run the corresponding SymbiYosys job separately from simulation.
+4. Review waveforms or counterexamples when a check fails.
+5. Keep documented verification status aligned with reproducible results from the current source.
 
-1. Parameterized RTL architecture
-2. Efficient combinational structures
-3. Sequential design and state management
-4. Self-checking verification
-5. SystemVerilog semantics
-6. SystemVerilog Assertions
-7. Formal property development
-8. Safety, liveness, and fairness properties
-9. Synthesis-aware RTL optimization
+## Scope
 
-## Roadmap
-
-Planned additions include progressively more complex reusable RTL blocks and stronger verification environments, with increasing use of:
-
-- Assertions and formal verification
-- Constrained/randomized testing
-- Coverage
-- CDC-aware verification
-- More systematic synthesis and implementation analysis
-- Reusable verification infrastructure
-  
-> This repository is primarily a learning and portfolio project, with an emphasis on understanding the reasoning behind RTL architectures and their verification rather than simply collecting finished modules.
+This repository brings together reusable RTL IP spanning FIFOs, arbitration, serial interfaces, and memory-mapped SoC integration. The emphasis is on both the hardware architecture and the verification collateral used to exercise it.
