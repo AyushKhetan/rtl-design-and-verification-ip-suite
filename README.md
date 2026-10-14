@@ -55,6 +55,4 @@ Tool compatibility depends on the constructs in each testbench and formal harnes
 - SPI master: `spi/rtl/spi_master.sv`
 - DMA: `dma/rtl/dma.sv`, `dma/docs/dma_spec.md`
 
-## Scope and status
 
-This repository documents RTL design and verification work across reusable IP blocks, CDC, serial interfaces, and SoC integration. The source snapshot contains the synchronous/asynchronous FIFO, arbiter, UART, APB–UART, SPI, and DMA source trees listed above. A few details may need to be completed or revalidated in a clean environment; do not interpret the presence of a formal configuration or an old result file as proof that the latest source passes every check.
